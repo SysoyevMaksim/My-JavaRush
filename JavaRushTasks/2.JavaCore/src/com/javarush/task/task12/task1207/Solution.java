@@ -6,8 +6,10 @@ Int и Integer
 
 public class Solution {
     public static void main(String[] args) {
-        print(1);
-        print(2);
+        int i = 1;
+        Integer j = 2;
+        print(i);
+        print(j);
     }
 
     //Напишите тут ваши методы
