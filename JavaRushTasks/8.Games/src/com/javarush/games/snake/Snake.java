@@ -13,11 +13,16 @@ public class Snake {
     private Direction direction = Direction.LEFT;
 
     public void setDirection(Direction direction) {
-        if ((direction == Direction.DOWN && this.direction != Direction.UP) ||
-                (direction == Direction.UP && this.direction != Direction.DOWN) ||
-                (direction == Direction.RIGHT && this.direction != Direction.LEFT) ||
-                (direction == Direction.LEFT && this.direction != Direction.RIGHT)) {
-            this.direction = direction;
+        if (!(this.direction == Direction.LEFT && snakeParts.get(0).x == snakeParts.get(1).x) &&
+                !(this.direction == Direction.RIGHT && snakeParts.get(0).x == snakeParts.get(1).x) &&
+                !(this.direction == Direction.UP && snakeParts.get(0).y == snakeParts.get(1).y) &&
+                !(this.direction == Direction.DOWN && snakeParts.get(0).y == snakeParts.get(1).y)) {
+            if ((direction == Direction.DOWN && this.direction != Direction.UP) ||
+                    (direction == Direction.UP && this.direction != Direction.DOWN) ||
+                    (direction == Direction.RIGHT && this.direction != Direction.LEFT) ||
+                    (direction == Direction.LEFT && this.direction != Direction.RIGHT)) {
+                this.direction = direction;
+            }
         }
     }
 
@@ -48,15 +53,14 @@ public class Snake {
             isAlive = false;
             return;
         }
-        if (checkCollision(Head)){
+        if (checkCollision(Head)) {
             isAlive = false;
             return;
         }
         snakeParts.add(0, Head);
-        if (Head.x == apple.x && Head.y == apple.y){
+        if (Head.x == apple.x && Head.y == apple.y) {
             apple.isAlive = false;
-        }
-        else{
+        } else {
             removeTail();
         }
     }
@@ -94,6 +98,10 @@ public class Snake {
             }
         }
         return false;
+    }
+
+    public int getLength() {
+        return snakeParts.size();
     }
 
 }
