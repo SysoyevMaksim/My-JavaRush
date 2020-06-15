@@ -49,9 +49,17 @@ public class Snake {
 
     public void move(Apple apple) {
         GameObject Head = createNewHead();
-        if (Head.x < 0 || Head.x >= SnakeGame.WIDTH || Head.y < 0 || Head.y >= SnakeGame.HEIGHT) {
-            isAlive = false;
-            return;
+        if (Head.x < 0)  {
+            Head.x = SnakeGame.WIDTH - 1;
+        }
+        if (Head.x >= SnakeGame.WIDTH) {
+            Head.x = 0;
+        }
+        if (Head.y < 0) {
+            Head.y = SnakeGame.HEIGHT - 1;
+        }
+        if (Head.y >= SnakeGame.HEIGHT){
+            Head.y = 0;
         }
         if (checkCollision(Head)) {
             isAlive = false;
